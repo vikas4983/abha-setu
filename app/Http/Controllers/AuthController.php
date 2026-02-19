@@ -14,7 +14,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return view('auth.login');
+        return view('frontends.home');
     }
     public function forgotPassword()
     {
