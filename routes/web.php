@@ -6,7 +6,7 @@ use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [DashboardController::class, 'dashboard'])->name('/');
+Route::get('/', [AuthController::class, 'home'])->name('/');
 Route::get('user-dashboard', [DashboardController::class, 'userDashboard'])
     ->name('user.dasboard')
     ->middleware(['auth', 'role:admin|user']);
@@ -14,6 +14,7 @@ Route::get('user-dashboard', [DashboardController::class, 'userDashboard'])
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('roles', RoleController::class);
+   
 });
 
 Route::view('adminDashboard', 'adminDashboard');
