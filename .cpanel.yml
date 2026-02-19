@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home1/ashis940/cehms.ashishwedskalyani.com/
+    - /bin/cp -R * $DEPLOYPATH
