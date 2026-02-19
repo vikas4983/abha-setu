@@ -1,16 +1,19 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [DashboardController::class, 'dashboard'])->name('/');
+Route::get('user-dashboard', [DashboardController::class, 'userDashboard'])
+    ->name('user.dasboard')
+    ->middleware(['auth', 'role:admin|user']);
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::resource('roles', RoleController::class);
 });
 
 Route::view('adminDashboard', 'adminDashboard');

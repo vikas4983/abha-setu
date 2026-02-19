@@ -14,7 +14,7 @@
     <meta name="robots" content="INDEX,FOLLOW">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title -->
-    <title>@yield('Edudash - School, College & LMS Admin Dashboard Template | Bootstrap 5')</title>
+    <title>@yield('title', 'Edudash - School, College & LMS Admin Dashboard Template | Bootstrap 5')</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" sizes="16x16">
     <!-- remix icon font css  -->
     <link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">
@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/calendar.css') }}">
     <!-- main css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
 </head>
 
 <body>
@@ -647,7 +648,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="role-access.html">
+                    <a href="{{ route('roles.index') }}">
                         <i class="ri-macbook-line"></i>
                         <span>Role & Access</span>
                     </a>
@@ -669,7 +670,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="assign-role-plan.html">
+                    <a href="#">
                         <i class="ri-user-follow-line"></i>
                         <span>Assign Role</span>
                     </a>
@@ -1010,12 +1011,13 @@
     <script src="{{ asset('assets/js/iconify-icon.min.js') }}"></script>
     <!-- Data Table js -->
     <script src="{{ asset('assets/js/dataTables.min.js') }}"></script>
-
     <!-- jQuery UI js -->
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
-
     <!-- main js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <!-- Custom js -->
+    <script src="{{ asset('assets/js/custom-js/data-table-assign-role.js') }}"></script>
+    <script src="{{ asset('assets/js/custom-js/action-button.js') }}"></script>
 
     <script>
         // ============================ Revenue Statistics Chart start ===============================
