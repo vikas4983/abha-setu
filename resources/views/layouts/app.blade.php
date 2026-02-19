@@ -253,12 +253,12 @@
                         </li>
                     </ul>
                 </li>
-                 {{-- <li>
+                 <li>
                     <a href="{{ route('roles.index') }}">
                         <i class="ri-macbook-line"></i>
                         <span>Role & Access</span>
                     </a>
-                </li> --}}
+                </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)">
                         <i class="ri-graduation-cap-line"></i>
@@ -653,12 +653,12 @@
                         <span>Subscription Plan </span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('roles.index') }}">
                         <i class="ri-macbook-line"></i>
                         <span>Role & Access</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="dropdown">
                     <a href="javascript:void(0)">
                         <i class="ri-shield-check-line"></i>
