@@ -216,7 +216,7 @@
         <div class="sidebar-menu-area">
             <ul class="sidebar-menu" id="sidebar-menu">
                 <li class="dropdown">
-                    <a href="javascript:void(0)">
+                    <a href="{{route('dashboard')}}">
                         <i class="ri-home-4-line"></i>
                         <span>Dashboard </span>
                     </a>
@@ -253,6 +253,12 @@
                         </li>
                     </ul>
                 </li>
+                 {{-- <li>
+                    <a href="{{ route('roles.index') }}">
+                        <i class="ri-macbook-line"></i>
+                        <span>Role & Access</span>
+                    </a>
+                </li> --}}
                 <li class="dropdown">
                     <a href="javascript:void(0)">
                         <i class="ri-graduation-cap-line"></i>
