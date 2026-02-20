@@ -253,10 +253,23 @@
                         </li>
                     </ul>
                 </li>
+<<<<<<< HEAD
                  <li>
                     <a href="{{ route('roles.index') }}">
                         <i class="ri-macbook-line"></i>
                         <span>Role & Access</span>
+=======
+                <li>
+                    <a href="{{ route('roles.index') }}">
+                        <i class="ri-macbook-line"></i>
+                        <span>Roles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('permissions.index') }}">
+                        <i class="ri-macbook-line"></i>
+                        <span>Permissions</span>
+>>>>>>> b8b75a2a6265cde6266e46664faa46c3f6389d3e
                     </a>
                 </li>
                 <li class="dropdown">
