@@ -104,7 +104,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
                             <li> <span>Email</span> <a href="mailto:info@edumart.org">info@edumart.org</a> </li>
                             <li> <span>Toll Free</span> 1800 000 0000 </li>
                         </ul>
-                        <a href="login.html" class="login">Student Login <span class="icon-more-icon"></span></a>
+                        <a href="login.html" class="login">Student Login &nbsp;&nbsp;&nbsp;<i class="fa fa-play-circle"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
                 <div class="navbar-collapse collapse" id="navbar">
                     <form class="navbar-form navbar-right">
                         <input type="text" placeholder="Search Now" class="form-control">
-                        <button class="search-btn"><span class="icon-search-icon"></span></button>
+                        <button class="search-btn"><i class="fa fa-search"></i></span></button>
                     </form>
                     <ul class="nav navbar-nav">
                         <li class="dropdown"> <a data-toggle="dropdown" href="#">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
