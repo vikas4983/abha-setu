@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Spatie\Permission\Models\Role as SpatieRole;
 
-class Role extends Model
+
+class Role extends SpatieRole
 {
     protected $fillable = ['name', 'guard_name', 'status'];
     protected $casts = ['created_at' => 'datetime:d M Y'];
@@ -18,4 +20,6 @@ class Role extends Model
     {
         return Attribute::make(set: fn($value) => strtolower($value));
     }
+
+   
 }

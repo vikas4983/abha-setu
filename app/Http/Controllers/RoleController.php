@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use PhpParser\Node\Stmt\TryCatch;
 
 class RoleController extends Controller
 {
@@ -14,8 +17,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::active()->get();
-
-        return view('roles.index', compact('roles'));
+        $permissions = Permission::active()->get();
+        return view('roles.index', compact('roles', 'permissions'));
     }
 
     /**
@@ -31,8 +34,40 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        Role::firstOrCreate(['name' => $request->name], ['guard_name' => 'web', 'status' => $request->status]);
-        return redirect()->back()->with('success', 'Role has been created successfully');
+        DB::beginTransaction();
+        try {
+            $role = Role::create([
+                'name'       => $request->name,
+                'guard_name' => 'web',
+                'status'     => $request->status,
+            ]);
+
+            $permissionInput = $request->permission ?? [];
+
+            if (!empty($permissionInput)) {
+
+
+                if (in_array('All', $permissionInput)) {
+
+                    $permissions = Permission::where('guard_name', 'web')->get();
+                } else {
+
+                    $permissions = Permission::whereIn('id', $permissionInput)->get();
+                }
+
+                $role->syncPermissions($permissions);
+            }
+            DB::commit();
+            return redirect()->back()->with('success', 'Role has been created successfully');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::error('Role assign failed', [
+                $th->getMessage(),
+                $th->getFile(),
+                $th->getLine(),
+            ]);
+            return redirect()->back()->with('error', 'Somethnig went wrong');
+        }
     }
 
     /**

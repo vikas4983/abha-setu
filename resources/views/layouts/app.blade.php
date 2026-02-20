@@ -253,6 +253,18 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ route('roles.index') }}">
+                        <i class="ri-macbook-line"></i>
+                        <span>Roles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('permissions.index') }}">
+                        <i class="ri-macbook-line"></i>
+                        <span>Permissions</span>
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)">
                         <i class="ri-graduation-cap-line"></i>

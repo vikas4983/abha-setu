@@ -1,22 +1,22 @@
 @extends('layouts.app')
-@section('title', 'Roles')
+@section('title', 'permissions')
 @section('content')
     <div class="dashboard-main-body">
         <div class="breadcrumb d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
             <div class="">
-                <h1 class="fw-semibold mb-4 h6 text-primary-light">Add Role </h1>
+                <h1 class="fw-semibold mb-4 h6 text-primary-light">Add permission </h1>
                 <div class="">
                     <a href="index.html" class="text-secondary-light hover-text-primary hover-underline">Dashboard </a>
                     <a href="employee-list.html" class="text-secondary-light hover-text-primary hover-underline "> /
                         HRM</a>
-                    <span class="text-secondary-light">/ Add Role</span>
+                    <span class="text-secondary-light">/ Add permission</span>
                 </div>
             </div>
             <button type="button" class="my-sidebar-btn btn btn-primary-600 d-flex align-items-center gap-6">
                 <span class="d-flex text-md">
                     <i class="ri-add-large-line"></i>
                 </span>
-                Add Role
+                Add permission
             </button>
         </div>
 
@@ -88,31 +88,32 @@
                                 <tr>
                                     <th scope="col">
                                         <div class="form-check style-check d-flex align-items-center">
-                                            <input class="form-check-input roleCheckbox" type="checkbox" id="selectAll">
+                                            <input class="form-check-input permissionCheckbox" type="checkbox"
+                                                id="selectAll">
                                             <label class="form-check-label">
                                                 S.L
                                             </label>
                                         </div>
                                     </th>
                                     <th scope="col">Date</th>
-                                    <th scope="col">Role Name</th>
+                                    <th scope="col">permission Name</th>
                                     {{-- <th scope="col">Features</th> --}}
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($roles as $count => $role)
+                                @forelse ($permissions as $count => $permission)
                                     <tr>
                                         <td>
                                             <div class="form-check style-check d-flex align-items-center">
-                                                <input class="form-check-input roleCheckbox" type="checkbox">
+                                                <input class="form-check-input permissionCheckbox" type="checkbox">
                                                 <label class="form-check-label">{{ $count + 1 }}</label>
                                             </div>
                                         </td>
-                                        <td>{{ $role->created_at->format('d M Y') }}</td>
-                                        <td>{{ ucfirst($role->name) }}</td>
-                                        <td>{{ ucfirst($role->status == 1 ? 'Active' : 'Inactive') }}</td>
+                                        <td>{{ $permission->created_at->format('d M Y') }}</td>
+                                        <td>{{ ucfirst($permission->name) }}</td>
+                                        <td>{{ ucfirst($permission->status == 1 ? 'Active' : 'Inactive') }}</td>
 
                                         <td>
                                             <div class="btn-group">
@@ -125,9 +126,9 @@
                                                     <li>
                                                         <button type="button"
                                                             class="editBtn edit-sidebar-btn dropdown-item rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-2 py-6"
-                                                            data-role-id="{{ $role->id }}"
-                                                            data-role-name="{{ $role->name }}"
-                                                            data-role-status="{{ $role->status }}">
+                                                            data-permission-id="{{ $permission->id }}"
+                                                            data-permission-name="{{ $permission->name }}"
+                                                            data-permission-status="{{ $permission->status }}">
                                                             <i class="ri-edit-2-line"></i>Edit
                                                         </button>
                                                     </li>
@@ -135,7 +136,7 @@
                                                         <button
                                                             class="dropdown-item rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-2 py-6"
                                                             type="button" data-bs-toggle="modal"
-                                                            data-role-id="{{ $role->id }}"
+                                                            data-permission-id="{{ $permission->id }}"
                                                             data-bs-target="#exampleModalDelete" id="bulkDeleteTrigger">
                                                             <i class="ri-delete-bin-6-line"></i>Delete
                                                         </button>
@@ -146,11 +147,7 @@
                                     </tr>
 
                                 @empty
-                                    <h3>No record found</h3>
                                 @endforelse
-
-
-
                             </tbody>
 
                         </table>
@@ -163,40 +160,41 @@
     <div
         class="my-sidebar bg-white position-fixed end-0 top-0 h-100vh overflow-y-auto z-99 max-w-700-px w-100 translate-x-full duration-300 active-translate-0">
         <div class="px-20 py-12 border-bottom d-flex align-items-center justify-content-between gap-20">
-            <h5 class="text-lg mb-0">Add Role</h5>
+            <h5 class="text-lg mb-0">Add permission</h5>
             <button type="button" class="close-my-sidebar text-danger-600 text-lg d-flex">
                 <i class="ri-close-large-line"></i>
             </button>
         </div>
-        <form id="addRole" action="{{ route('roles.store') }}" method="POST"class="d-flex flex-column p-20">
+        <form id="addpermission" action="{{ route('permissions.store') }}" method="POST"class="d-flex flex-column p-20">
             @csrf
             <div class="row g-3">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="">
-                        <label for="roleName" class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Role Name
+                        <label for="permissionName"
+                            class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Name
                         </label>
-                        <input type="text" name="name" class="form-control" id="roleName"
-                            placeholder="Enter Role Name">
+                        <input type="text" name="name" class="form-control" id="permissionName"
+                            placeholder="Enter permission Name">
                         <div class="invalid-feedback">
-                            Role name is required
+                            Permission name is required
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                {{-- <div class="col-sm-4">
                     <div class="">
                         <label for="featuresSelect"
                             class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Features
                         </label>
-                        <select id="featuresSelect" name="permission[]"  class="form-control form-select">
+                        <select id="featuresSelect" class="form-control form-select">
                             <option value="Select a Class" disabled>Select a Class</option>
-                            <option value="All" >All</option>
-                           @foreach ($permissions as $permission)
-                                 <option value="{{$permission->id}}">{{$permission->name}}</option>
-                            @endforeach
+                            <option value="User Management">User Management</option>
+                            <option value="System Settings">System Settings</option>
+                            <option value="Notifications">Notifications</option>
+                            <option value="Payroll">Payroll</option>
                         </select>
                     </div>
-                </div>
-                <div class="col-sm-4">
+                </div> --}}
+                <div class="col-sm-6">
                     <div class="">
                         <label for="status" class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Features
                         </label>
@@ -228,29 +226,30 @@
     <div
         class="edit-sidebar bg-white position-fixed end-0 top-0 h-100vh overflow-y-auto z-99 max-w-700-px w-100 translate-x-full duration-300 active-translate-0">
         <div class="px-20 py-12 border-bottom d-flex align-items-center justify-content-between gap-20">
-            <h5 class="text-lg mb-0">Edit Role </h5>
+            <h5 class="text-lg mb-0">Edit permission </h5>
             <button type="button" class="close-edit-sidebar text-danger-600 text-lg d-flex">
                 <i class="ri-close-large-line"></i>
             </button>
         </div>
-        <form id="editRoleForm" method="POST" class="d-flex flex-column p-20">
-            <input type="hidden" name="id" id="editRoleId">
+        <form id="editpermissionForm" method="POST" class="d-flex flex-column p-20">
+            <input type="hidden" name="id" id="editpermissionId">
             @csrf
             @method('PATCH')
             <div class="row g-3">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="">
-                        <label for="editRoleForm" class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Role
+                        <label for="editpermissionForm"
+                            class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Permission
                             Name
                         </label>
-                        <input type="text" id="editRoleName" name="name" class="form-control"
-                            placeholder="Enter Role Name">
+                        <input type="text" id="editpermissionName" name="name" class="form-control"
+                            placeholder="Enter permission Name">
                         <div class="invalid-feedback">
-                            Role name is required
+                            permission name is required
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                {{-- <div class="col-sm-4">
                     <div class="">
                         <label for="featuresEditClass"
                             class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Features
@@ -258,17 +257,17 @@
                         <select id="perStatus" class="form-control form-select">
                             <option value="Select a Class" disabled>Select a Class</option>
                             <option value="User Management">User Management</option>
-                            @foreach ($permissions as $permission)
-                                 <option value="{{$permission->id}}">{{$permission->name}}</option>
-                            @endforeach
+                            <option value="System Settings">System Settings</option>
+                            <option value="Notifications">Notifications</option>
+                            <option value="Payroll">Payroll</option>
                         </select>
                     </div>
-                </div>
-                <div class="col-sm-4">
+                </div> --}}
+                <div class="col-sm-6">
                     <div class="">
                         <label for="status" class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Features
                         </label>
-                        <select id="editRoleStatus" name="status" class="form-control form-select">
+                        <select id="editpermissionStatus" name="status" class="form-control form-select">
                             <option value="Select a Class" disabled>Select One</option>
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
@@ -310,7 +309,7 @@
                             data-bs-dismiss="modal">
                             Cancel
                         </button>
-                        <form id="deleteRoleForm" method="POST" action="">
+                        <form id="deletepermissionForm" method="POST" action="">
                             <input type="hidden" name="_method" value="DELETE">
                             @csrf
                             {{-- @method('DELETE') --}}
@@ -339,9 +338,9 @@
                 const editBtn = e.target.closest('.editBtn');
                 if (!editBtn) return; // Agar editBtn nahi hai to kuch mat karo
 
-                const id = editBtn.getAttribute('data-role-id');
-                const name = editBtn.getAttribute('data-role-name');
-                const status = editBtn.getAttribute('data-role-status');
+                const id = editBtn.getAttribute('data-permission-id');
+                const name = editBtn.getAttribute('data-permission-name');
+                const status = editBtn.getAttribute('data-permission-status');
 
                 const sidebar = document.querySelector('.edit-sidebar');
                 if (sidebar) {
@@ -349,17 +348,17 @@
                 }
 
                 // Set form values
-                const roleIdInput = document.getElementById('editRoleId');
-                const roleNameInput = document.getElementById('editRoleName');
-                const roleStatusInput = document.getElementById('editRoleStatus');
-                const form = document.getElementById('editRoleForm');
+                const permissionIdInput = document.getElementById('editpermissionId');
+                const permissionNameInput = document.getElementById('editpermissionName');
+                const permissionStatusInput = document.getElementById('editpermissionStatus');
+                const form = document.getElementById('editpermissionForm');
 
-                if (roleIdInput) roleIdInput.value = id;
-                if (roleNameInput) roleNameInput.value = name;
-                if (roleStatusInput) roleStatusInput.value = String(status);
+                if (permissionIdInput) permissionIdInput.value = id;
+                if (permissionNameInput) permissionNameInput.value = name;
+                if (permissionStatusInput) permissionStatusInput.value = String(status);
 
                 if (form) {
-                    form.action = "{{ route('roles.update', ':id') }}".replace(':id', id);
+                    form.action = "{{ route('permissions.update', ':id') }}".replace(':id', id);
                 }
 
             });
@@ -376,11 +375,12 @@
                     const button = e.relatedTarget;
                     if (!button) return;
 
-                    const roleId = button.getAttribute('data-role-id');
-                    const form = document.getElementById('deleteRoleForm');
+                    const permissionId = button.getAttribute('data-permission-id');
+                    const form = document.getElementById('deletepermissionForm');
 
                     if (form) {
-                        form.action = "{{ route('roles.destroy', ':id') }}".replace(':id', roleId);
+                        form.action = "{{ route('permissions.destroy', ':id') }}".replace(':id',
+                            permissionId);
                     }
 
                 });
@@ -390,7 +390,7 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            function validateRole(formId, inputId) {
+            function validatepermission(formId, inputId) {
                 const form = document.getElementById(formId);
                 if (!form) return;
                 form.addEventListener('submit', function(e) {
@@ -418,8 +418,8 @@
                 }
             }
             // Apply validation
-            validateRole('addRole', 'roleName');
-            validateRole('editRoleForm', 'editRoleName');
+            validatepermission('addpermission', 'permissionName');
+            validatepermission('editpermissionForm', 'editpermissionName');
 
         });
     </script>
