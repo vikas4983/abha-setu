@@ -255,7 +255,7 @@
                 </li>
                 <li>
                     <a href="{{ route('roles.index') }}">
-                        <i class="ri-macbook-line"></i>
+                        <i class="ri-user-follow-line"></i>
                         <span>Roles</span>
                     </a>
                 </li>
@@ -264,6 +264,33 @@
                         <i class="ri-macbook-line"></i>
                         <span>Permissions</span>
                     </a>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <i class="ri-user-settings-line"></i>
+                        <span>Settings</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li>
+                            <a href="{{route('siteSettings.index')}}">
+                                <i class="ri-circle-fill circle-icon w-auto"></i>
+                                General
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="currencies.html">
+                                <i class="ri-circle-fill circle-icon w-auto"></i>
+                                Currencies
+                            </a>
+                        </li>
+                        <li>
+                            <a href="languages.html">
+                                <i class="ri-circle-fill circle-icon w-auto"></i>
+                                Languages
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)">
@@ -687,38 +714,7 @@
                         <span>Assign Role</span>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)">
-                        <i class="ri-user-settings-line"></i>
-                        <span>Settings</span>
-                    </a>
-                    <ul class="sidebar-submenu">
-                        <li>
-                            <a href="general.html">
-                                <i class="ri-circle-fill circle-icon w-auto"></i>
-                                General
-                            </a>
-                        </li>
-                        <li>
-                            <a href="notification.html">
-                                <i class="ri-circle-fill circle-icon w-auto"></i>
-                                Notification
-                            </a>
-                        </li>
-                        <li>
-                            <a href="currencies.html">
-                                <i class="ri-circle-fill circle-icon w-auto"></i>
-                                Currencies
-                            </a>
-                        </li>
-                        <li>
-                            <a href="languages.html">
-                                <i class="ri-circle-fill circle-icon w-auto"></i>
-                                Languages
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                
             </ul>
         </div>
     </aside>
