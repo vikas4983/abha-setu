@@ -292,6 +292,12 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{route('menus.index')}}">
+                       <i class="ri-menu-line"></i>
+                        <span>Menus</span>
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)">
                         <i class="ri-graduation-cap-line"></i>
