@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <title>User Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +81,7 @@
             background: #fff;
             padding: 8px 15px;
             border-radius: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Cards */
@@ -93,7 +95,7 @@
             background: #fff;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
             transition: 0.3s;
         }
 
@@ -113,60 +115,101 @@
         }
 
         /* Responsive */
-        @media(max-width: 768px){
-            .sidebar{
+        @media(max-width: 768px) {
+            .sidebar {
                 display: none;
             }
         }
     </style>
 </head>
+
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar">
-    <h2>MyApp</h2>
-    <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Orders</a></li>
-        <li><a href="#">Settings</a></li>
-        <li><a href="#">Logout</a></li>
-    </ul>
-</div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>MyApp</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Orders</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#" id="userLogout" data-url="{{ route('logout') }}">Logout</a> </li>
 
-<!-- Main Content -->
-<div class="main">
-    <div class="topbar">
-        <h1>Welcome, {{ auth()->user()->name ?? 'User' }}</h1>
-        <div class="profile">
-            {{ auth()->user()->email ?? 'user@email.com' }}
-        </div>
+
+
+        </ul>
     </div>
 
-    <div class="cards">
-        <div class="card">
-            <h3>Total Orders</h3>
-            <p>25</p>
+    <!-- Main Content -->
+    <div class="main">
+        <div class="topbar">
+            <h1>Welcome, {{ auth()->user()->name ?? 'User' }}</h1>
+            <div class="profile">
+                {{ auth()->user()->email ?? 'user@email.com' }}
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Pending Orders</h3>
-            <p>5</p>
-        </div>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p>25</p>
+            </div>
 
-        <div class="card">
-            <h3>Completed Orders</h3>
-            <p>18</p>
-        </div>
+            <div class="card">
+                <h3>Pending Orders</h3>
+                <p>5</p>
+            </div>
 
-        <div class="card">
-            <h3>Wallet Balance</h3>
-            <p>₹2,500</p>
+            <div class="card">
+                <h3>Completed Orders</h3>
+                <p>18</p>
+            </div>
+
+            <div class="card">
+                <h3>Wallet Balance</h3>
+                <p>₹2,500</p>
+            </div>
         </div>
     </div>
-</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userLogout = document.querySelector('#userLogout');
+            if (userLogout) {
+               
+                userLogout.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const action = this.dataset.url;
+                
+                    fetch(action, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                    .getAttribute('content'),
+                            },
+                        })
+                        .then(response => {
+                            if (!response) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            console.log(data.message);
+                            window.location.href = 'login';
+                        })
 
+                        .catch(error => {
+                            console.error('logour error:', error);
+                            alert('Something went wrong');
+                        });
+                })
+            }
+        });
+    </script>
 </body>
+
 </html>
 
 

@@ -15,9 +15,9 @@ Route::get('/', [AuthController::class, 'home'])->name('/');
 Route::get('user-dashboard', [DashboardController::class, 'userDashboard'])
     ->name('user.dasboard')
     ->middleware(['auth', 'role:admin|user']);
-
+Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('siteSettings', SiteSettingController::class);
