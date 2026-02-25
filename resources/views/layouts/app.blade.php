@@ -216,7 +216,7 @@
         <div class="sidebar-menu-area">
             <ul class="sidebar-menu" id="sidebar-menu">
                 <li class="dropdown">
-                    <a href="{{route('dashboard')}}">
+                    <a href="{{ route('dashboard') }}">
                         <i class="ri-home-4-line"></i>
                         <span>Dashboard </span>
                     </a>
@@ -272,12 +272,12 @@
                     </a>
                     <ul class="sidebar-submenu">
                         <li>
-                            <a href="{{route('siteSettings.index')}}">
+                            <a href="{{ route('siteSettings.index') }}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 General
                             </a>
                         </li>
-                        
+
                         <li>
                             <a href="currencies.html">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
@@ -293,8 +293,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('menus.index')}}">
-                       <i class="ri-menu-line"></i>
+                    <a href="{{ route('menus.index') }}">
+                        <i class="ri-menu-line"></i>
                         <span>Menus</span>
                     </a>
                 </li>
@@ -305,7 +305,7 @@
                     </a>
                     <ul class="sidebar-submenu">
                         <li>
-                            <a href="add-new-student.html">
+                            <a href="{{route('students.index')}}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Add New Student
                             </a>
@@ -720,7 +720,7 @@
                         <span>Assign Role</span>
                     </a>
                 </li>
-                
+
             </ul>
         </div>
     </aside>

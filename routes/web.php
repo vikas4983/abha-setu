@@ -7,7 +7,9 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteSettingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 Route::get('/', [AuthController::class, 'home'])->name('/');
 Route::get('user-dashboard', [DashboardController::class, 'userDashboard'])
@@ -20,8 +22,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('permissions', PermissionController::class);
     Route::resource('siteSettings', SiteSettingController::class);
     Route::resource('menus', MenuController::class);
-    Route::view('recursive','recursive');
-   
+    Route::resource('students', UserController::class);
+
+    Route::view('recursive', 'recursive');
 });
 
 Route::view('adminDashboard', 'adminDashboard');
