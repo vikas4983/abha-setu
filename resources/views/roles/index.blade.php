@@ -187,11 +187,11 @@
                         <label for="featuresSelect"
                             class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Features
                         </label>
-                        <select id="featuresSelect" name="permission[]"  class="form-control form-select">
-                            <option value="Select a Class" disabled>Select a Class</option>
-                            <option value="All" >All</option>
-                           @foreach ($permissions as $permission)
-                                 <option value="{{$permission->id}}">{{$permission->name}}</option>
+                        <select id="featuresSelect" name="permission[]" class="form-control form-select">
+                            <option value="">None</option>
+                            <option value="all">All Permissions</option>
+                            @foreach ($permissions as $permission)
+                                <option value="{{ $permission->id }}">{{ $permission->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -255,12 +255,18 @@
                         <label for="featuresEditClass"
                             class="text-sm fw-semibold text-primary-light d-inline-block mb-8">Features
                         </label>
-                        <select id="perStatus" class="form-control form-select">
-                            <option value="Select a Class" disabled>Select a Class</option>
-                            <option value="User Management">User Management</option>
+                        <select id="permission" name="permissions[]" class="form-control form-select">
+                            <option value="" >Select One</option>
+                            <option value="all">All Permissions</option>
                             @foreach ($permissions as $permission)
-                                 <option value="{{$permission->id}}">{{$permission->name}}</option>
+                                <option value="{{ $permission->name }}"
+                                    {{ in_array($permission->name, old('permissions', $role->permissions->pluck('name')->toArray()))
+                                        ? 'selected'
+                                        : '' }}>
+                                    {{ $permission->name }}
+                                </option>
                             @endforeach
+
                         </select>
                     </div>
                 </div>
