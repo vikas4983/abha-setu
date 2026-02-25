@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Models\Permission as ModelsPermission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\TryCatch;
+
 
 class RoleController extends Controller
 {
@@ -34,6 +36,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         DB::beginTransaction();
         try {
             $role = Role::create([
@@ -47,8 +50,7 @@ class RoleController extends Controller
             if (!empty($permissionInput)) {
 
 
-                if (in_array('All', $permissionInput)) {
-
+                if (in_array('all', $permissionInput)) {
                     $permissions = Permission::where('guard_name', 'web')->get();
                 } else {
 
@@ -91,8 +93,22 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $role->update($request->all());
-        return redirect()->back()->with('success', 'Role has been updated successfully');
+        $permissions = array_filter((array) $request->permissions);
+        if (empty($permissions)) {
+            $role->update($request->all());
+            return redirect()->back()
+                ->with('success', 'Role name & status has been updated successfully');
+        } else {
+            if (in_array('all', $permissions)) {
+                $role->syncPermissions(Permission::all());
+            } else {
+                $role->syncPermissions($permissions);
+            }
+            $role->update($request->all());
+        }
+
+        return redirect()->back()
+            ->with('success', 'Role has been updated successfully');
     }
 
     /**
