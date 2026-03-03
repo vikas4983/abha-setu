@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\MenuController;
@@ -16,7 +17,9 @@ Route::get('/', [AuthController::class, 'home'])->name('/');
 Route::get('user-dashboard', [DashboardController::class, 'userDashboard'])
     ->name('user.dasboard')
     ->middleware(['auth', 'role:admin|user']);
-Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
+Route::get('dashboard', [DashboardController::class, 'dashboard'])
+    ->name('dashboard')
+    ->middleware(['auth']);
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::resource('roles', RoleController::class);
@@ -24,9 +27,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('siteSettings', SiteSettingController::class);
     Route::resource('menus', MenuController::class);
     Route::resource('students', StudentController::class);
-    Route::post('student-status',[StudentController::class,'studentStatus'])->name('student.status');
-    Route::get('inactive-student',[StudentController::class,'inactiveStudent'])->name('inactive.students');
-    Route::post('upload-image',[StudentController::class,'uploadImage'])->name('upload.image');
+    Route::post('student-status', [StudentController::class, 'studentStatus'])->name('student.status');
+    Route::get('inactive-student', [StudentController::class, 'inactiveStudent'])->name('inactive.students');
+    Route::post('upload-image', [StudentController::class, 'uploadImage'])->name('upload.image');
+    Route::resource('books', BookController::class);
+    Route::get('book-status', [BookController::class, 'bookStatus'])->name('book.status');
     Route::view('recursive', 'recursive');
 });
 

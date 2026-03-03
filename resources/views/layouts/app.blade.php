@@ -305,24 +305,51 @@
                     </a>
                     <ul class="sidebar-submenu">
                         <li>
-                            <a href="{{route('students.create')}}">
+                            <a href="{{ route('students.create') }}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Add New Student
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('students.index')}}">
+                            <a href="{{ route('students.index') }}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Student List
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('inactive.students')}}">
+                            <a href="{{ route('inactive.students') }}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Suspend Student
                             </a>
                         </li>
-                        
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <i class="ri-book-line"></i>
+                        <span>Books</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li>
+                            <a href="{{ route('books.create') }}">
+                                <i class="ri-circle-fill circle-icon w-auto"></i>
+                                Add New Book
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('books.index') }}">
+                                <i class="ri-circle-fill circle-icon w-auto"></i>
+                                Book List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('book.status') }}">
+                                <i class="ri-circle-fill circle-icon w-auto"></i>
+                                Unpublish Book
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="dropdown">
