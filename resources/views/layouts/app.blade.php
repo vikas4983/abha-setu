@@ -305,41 +305,24 @@
                     </a>
                     <ul class="sidebar-submenu">
                         <li>
-                            <a href="{{route('students.index')}}">
+                            <a href="{{route('students.create')}}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Add New Student
                             </a>
                         </li>
                         <li>
-                            <a href="student-list.html">
+                            <a href="{{route('students.index')}}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Student List
                             </a>
                         </li>
                         <li>
-                            <a href="suspended-student.html">
+                            <a href="{{route('inactive.students')}}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Suspend Student
                             </a>
                         </li>
-                        <li>
-                            <a href="student-category.html">
-                                <i class="ri-circle-fill circle-icon w-auto"></i>
-                                Student Categories
-                            </a>
-                        </li>
-                        <li>
-                            <a href="edit-student.html">
-                                <i class="ri-circle-fill circle-icon w-auto"></i>
-                                Edit Student
-                            </a>
-                        </li>
-                        <li>
-                            <a href="student-details.html">
-                                <i class="ri-circle-fill circle-icon w-auto"></i>
-                                Student Details
-                            </a>
-                        </li>
+                        
                     </ul>
                 </li>
                 <li class="dropdown">

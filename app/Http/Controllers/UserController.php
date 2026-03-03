@@ -11,10 +11,9 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
-        $students = User::role('user')->get();
-        dd($students);
-        return view('students.index',compact('students'));
+    {
+        $students = User::get();
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -22,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

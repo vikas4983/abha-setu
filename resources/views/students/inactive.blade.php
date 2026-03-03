@@ -5,12 +5,12 @@
 
         <div class="breadcrumb d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
             <div class="">
-                <h1 class="fw-semibold mb-4 h6 text-primary-light">Student List</h1>
+                <h1 class="fw-semibold mb-4 h6 text-primary-light">Suspend Student</h1>
                 <div class="">
                     <a href="index.html" class="text-secondary-light hover-text-primary hover-underline">Dashboard </a>
                     <a href="javascript:void(0)" class="text-secondary-light hover-text-primary hover-underline d-none"> /
                         Student</a>
-                    <span class="text-secondary-light">/ Student List</span>
+                    <span class="text-secondary-light">/ Suspend Student</span>
                 </div>
             </div>
             <a href="{{ route('students.create') }}" class="btn btn-primary-600 d-flex align-items-center gap-6 ">
@@ -20,7 +20,7 @@
                 Add Student
             </a>
         </div>
-
+        @include('alerts.alert')
         <div class="mt-24">
             <div class="card h-100">
                 <div class="card-body p-0 dataTable-wrapper">
@@ -151,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                    @include('alerts.alert')
+
                     <div class="p-0">
                         <table class="table bordered-table mb-0 data-table" id="dataTable" data-page-length='10'>
                             <thead>
@@ -186,8 +186,8 @@
                                                 </label>
                                             </div>
                                         </td>
-                                        <td><a href="{{ route('students.show', $student?->id ?? '') }}"
-                                                style="color:rgb(9, 146, 112)">{{ $student?->name ?? '' }}</a>
+                                        <td><a
+                                                href="{{ route('students.show', $student?->id ?? '') }}">{{ $student?->name ?? '' }}</a>
                                         </td>
                                         <td>{{ $student?->email ?? '' }}</td>
                                         <td>{{ $student?->gender ?? '' }}</td>
@@ -225,15 +225,14 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
                             </tbody>
+                            @endforeach
                         </table>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal Delete Event start -->
     <x-button.confirm-delete-component />
-
 @endsection

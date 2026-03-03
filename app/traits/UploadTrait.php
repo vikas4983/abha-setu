@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 trait UploadTrait
 {
-
     public function upload($file)
     {
         $originalName = $file->getClientOriginalName();

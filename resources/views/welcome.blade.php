@@ -175,11 +175,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             const userLogout = document.querySelector('#userLogout');
             if (userLogout) {
-               
                 userLogout.addEventListener('click', function(e) {
                     e.preventDefault();
                     const action = this.dataset.url;
-                
                     fetch(action, {
                             method: 'POST',
                             headers: {
@@ -199,7 +197,6 @@
                             console.log(data.message);
                             window.location.href = 'login';
                         })
-
                         .catch(error => {
                             console.error('logour error:', error);
                             alert('Something went wrong');
