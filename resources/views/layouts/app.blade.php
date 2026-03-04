@@ -354,6 +354,26 @@
                 </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)">
+                        <i class="ri-newspaper-line"></i>
+                        <span>News</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li>
+                            <a href="{{ route('news.create') }}">
+                                <i class="ri-circle-fill circle-icon w-auto"></i>
+                                Add New News
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('news.index') }}">
+                                <i class="ri-circle-fill circle-icon w-auto"></i>
+                                News List
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
                         <i class="ri-user-follow-line"></i>
                         <span>Teachers</span>
                     </a>

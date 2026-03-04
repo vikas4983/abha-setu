@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteSettingController;
@@ -32,6 +33,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('upload-image', [StudentController::class, 'uploadImage'])->name('upload.image');
     Route::resource('books', BookController::class);
     Route::get('book-status', [BookController::class, 'bookStatus'])->name('book.status');
+    Route::resource('news', NewsController::class);
     Route::view('recursive', 'recursive');
 });
 
