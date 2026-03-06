@@ -13,6 +13,9 @@ class AuthController extends Controller
         if ($user && $user->hasRole('admin')) {
             return redirect()->route('dashboard');
         }
+        if ($user && $user->hasRole('user')) {
+            return 'User Dashboard';
+        }
 
         return view('frontends.home');
     }

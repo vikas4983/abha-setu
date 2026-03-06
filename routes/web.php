@@ -4,9 +4,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\StudentController;
@@ -36,6 +38,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('news', NewsController::class);
     Route::view('recursive', 'recursive');
 });
-
+Route::view('frontends.home', 'frontends.home');
 Route::view('adminDashboard', 'adminDashboard');
 Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot.password');
+
+// FRONTEND
+Route::get('register',[RegisterController::class,'register'])->name('student.register');
+Route::get('books-list',[FrontendController::class,'books'])->name('books.list');
+Route::get('about-us',[FrontendController::class,'aboutUs'])->name('about.us');
+Route::get('medicine',[FrontendController::class,'medicine'])->name('medicine');
+Route::get('update',[FrontendController::class,'update'])->name('update');
+Route::get('practitioner',[FrontendController::class,'practitioner'])->name('practitioner');
+Route::get('contact',[FrontendController::class,'contact'])->name('contact');
