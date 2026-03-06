@@ -224,7 +224,8 @@
                             <li><a href="#">{{ $setting->address }}</a></li>
                             <li><a href="tel:{{ $setting->landline }}">{{ $setting->landline }}</a></li>
                             <li><a href="tel:{{ $setting->primary_number }}">{{ $setting->primary_number }}</a></li>
-                            <li><a href="tel:{{ $setting->secondary_number }}">{{ $setting->secondary_number }}</a></li>
+                            <li><a href="tel:{{ $setting->secondary_number }}">{{ $setting->secondary_number }}</a>
+                            </li>
 
                         </ul>
                     </div>
