@@ -28,4 +28,7 @@ class FrontendController extends Controller
     public function contact(){
         return "Contact";
     }
+    public function applyFor(){
+        return "Aply for";
+    }
 }

@@ -33,7 +33,7 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        Menu::updateOrCreate(['name' => $request->name], $request->all());
+        Menu::create($request->all());
         return redirect()->back()->with('success', 'Menu has been created successfully');
     }
 

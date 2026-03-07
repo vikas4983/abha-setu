@@ -20,18 +20,15 @@ class FrontendServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // $setting = Cache::remember('web_setting', 1, function () {
-        //     return SiteSetting::first();
-        // });
-        // $headers = Cache::remember('headers', 1, function () {
-        //     return Menu::header()->get();
-        // });
-        // $footers = Cache::remember('menu', 1, function () {
-        //     return Menu::footer()->get();
-        // });
-        $setting = SiteSetting::first();
-        $headers = Menu::header()->get();
-        $footers = Menu::footer()->get();
+        $setting = Cache::remember('web_setting', 60, function () {
+            return SiteSetting::first();
+        });
+        $headers = Cache::remember('headers', 60, function () {
+            return Menu::header()->where('status',1)->get();
+        });
+        $footers = Cache::remember('footers', 60, function () {
+            return Menu::footer()->where('status',1)->get();
+        });
         View::share([
             'setting' => $setting,
             'headers' => $headers,

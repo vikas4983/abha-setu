@@ -73,14 +73,29 @@
         <div class="header-top">
             <div class="container clearfix">
                 <ul class="follow-us hidden-xs">
-                    <li><a href="{{ $setting?->facebook ?? '#' }}"><i class="fa fa-facebook-official"
-                                aria-hidden="true"></i></a></li>
-                    <li><a href="{{ $setting?->google ?? '#' }}"><i class="fa fa-google-plus"
-                                aria-hidden="true"></i></a></li>
-                    <li><a href="{{ $setting?->youtube ?? '#' }}"><i class="fa fa-youtube-play"
-                                aria-hidden="true"></i></a></li>
-                    <li><a href="{{ $setting?->instagram ?? '#' }}"><i class="fa fa-instagram"
-                                aria-hidden="true"></i></a></li>
+                    @if (!empty($setting->facebook))
+                        <li><a href="{{ $setting?->facebook ?? '#' }}"><i class="fa fa-facebook-official"
+                                    aria-hidden="true"></i></a></li>
+                    @endif
+                    @if (!empty($setting->google))
+                        <li><a href="{{ $setting?->google ?? '#' }}"><i class="fa fa-google-plus"
+                                    aria-hidden="true"></i></a></li>
+                    @endif
+                    @if (!empty($setting->youtube))
+                        <li><a href="{{ $setting?->youtube ?? '#' }}"><i class="fa fa-youtube-play"
+                                    aria-hidden="true"></i></a></li>
+                    @endif
+                    @if (!empty($setting->instagram))
+                        <li><a href="{{ $setting?->instagram ?? '#' }}"><i class="fa fa-instagram"
+                                    aria-hidden="true"></i></a></li>
+                    @endif
+                    @if (!empty($setting->twitter))
+                        <li><a href="{{ $setting->twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    @endif
+                    @if (!empty($setting->linkedin))
+                        <li><a href="{{ $setting->linkedin }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </li>
+                    @endif
                 </ul>
 
                 <div class="right-block clearfix">
@@ -178,7 +193,7 @@
                                 @endif
                             @elseif($header->name == 'Update')
                                 <li> <a href="{{ route($header->url ?? '#') }}">{{ $header?->name ?? '' }}</a></li>
-                            @elseif($header->name == 'Practitioner')
+                            @elseif($header->name == 'Practitioners')
                                 <li> <a href="{{ route($header->url ?? '#') }}">{{ $header?->name ?? '' }}</a></li>
                             @elseif($header->name == 'Contact')
                                 <li> <a href="{{ route($header->url ?? '#') }}">{{ $header?->name ?? '' }}</a></li>
@@ -208,7 +223,6 @@
                                 {{ $setting->name }}
                             @endif
                         </h3>
-
                         @if (!empty($setting->map))
                             <div class="map-responsive">
                                 <iframe src="{{ $setting->map }}" loading="lazy"></iframe>
@@ -220,45 +234,70 @@
                         <h3>Address</h3>
                         <ul>
                             @if (!empty($setting->address))
+                                <li><a href="#">{{ $setting->address }}</a></li>
                             @endif
-                            <li><a href="#">{{ $setting->address }}</a></li>
-                            <li><a href="tel:{{ $setting->landline }}">{{ $setting->landline }}</a></li>
-                            <li><a href="tel:{{ $setting->primary_number }}">{{ $setting->primary_number }}</a></li>
-                            <li><a href="tel:{{ $setting->secondary_number }}">{{ $setting->secondary_number }}</a>
-                            </li>
+
+                            @if (!empty($setting->landline))
+                                <li><a href="tel:{{ $setting->landline }}">{{ $setting->landline }}</a></li>
+                            @endif
+
+                            @if (!empty($setting->primary_number))
+                                <li><a href="tel:{{ $setting->primary_number }}">{{ $setting->primary_number }}</a>
+                                </li>
+                            @endif
+
+                            @if (!empty($setting->secondary_number))
+                                <li><a
+                                        href="tel:{{ $setting->secondary_number }}">{{ $setting->secondary_number }}</a>
+                                </li>
+                            @endif
+
 
                         </ul>
                     </div>
-                    {{-- <div class="foot-nav">
-                        <h3>Courses</h3>
+                    <div class="foot-nav">
+                        <h3>Departments</h3>
                         <ul>
-                            <li><a href="#">2 Year Online MBA General</a></li>
-                            <li><a href="#">Certificate in HRM</a></li>
-                            <li><a href="#">Certificate in Marketing</a></li>
-                            <li><a href="#">Certificate in Finance</a></li>
-                            <li><a href="#">Corporate Programs</a></li>
+                            @forelse ($footers as $footer)
+                                @if (!empty($footer) && $footer->name == 'Books')
+                                    <li><a href="{{ route($footer->url ?? '') }}">{{ $footer?->name ?? '' }}</a></li>
+                                @elseif(!empty($footer) && $footer->name == 'Medicine')
+                                    <li><a href="{{ route($footer->url ?? '') }}">{{ $footer?->name ?? '' }}</a></li>
+                                @elseif(!empty($footer) && $footer->name == 'Practitioners')
+                                    <li><a href="{{ route($footer->url ?? '') }}">{{ $footer?->name ?? '' }}</a></li>
+                                @endif
+                            @empty
+                            @endforelse
+
+
                         </ul>
                     </div>
                     <div class="foot-nav">
-                        <h3>Why Edumart</h3>
+                        <h3>Useful Links</h3>
                         <ul>
-                            <li><a href="#">Introduction</a></li>
-                            <li><a href="#">Learn Everywhere</a></li>
-                            <li><a href="#">Modern Curriculum</a></li>
-                            <li><a href="#">Placement Assistance</a></li>
-                            <li><a href="#">Eligibility</a></li>
+                            @forelse ($footers as $footer)
+                                @if (!empty($footer) && $footer->name == 'Contact')
+                                    <li><a href="{{ route($footer->url ?? '') }}">{{ $footer?->name ?? '' }}</a></li>
+                                @elseif(!empty($footer) && $footer->name == 'Update')
+                                    <li><a href="{{ route($footer->url ?? '') }}">{{ $footer?->name ?? '' }}</a></li>
+                                @elseif(!empty($footer) && $footer->name == 'Apply For')
+                                    <li><a href="{{ route($footer->url ?? '') }}">{{ $footer?->name ?? '' }}</a></li>
+                                @endif
+                            @empty
+                            @endforelse
                         </ul>
-                    </div> --}}
+                    </div>
+
 
                 </div>
                 <div class="col-sm-3">
                     <div class="footer-logo hidden-xs"><a href="index.html"><img
                                 src="{{ asset('assets-frontend/') }}images/footer-logo.png" class="img-responsive"
                                 alt=""></a></div>
-                    <p>© 2020 <span>Edumart</span>. All rights reserved</p>
+                    <p>© 2026 <span>CEHSM</span>. All rights reserved</p>
                     <ul class="terms clearfix">
-                        <li><a href="terms.html">TERMS OF USE</a></li>
-                        <li><a href="privacy.html">PRIVACY POLICY</a></li>
+                        <li><a href="#">TERMS OF USE</a></li>
+                        <li><a href="#">PRIVACY POLICY</a></li>
                         <li><a href="#">SITEMAP</a></li>
                     </ul>
                 </div>
@@ -266,7 +305,7 @@
         </div>
         <!-- End Footer Top -->
         <!-- Start Footer Bottom -->
-        <div class="bottom">
+        {{-- <div class="bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
@@ -360,7 +399,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End Footer Bottom -->
     </footer>
 

@@ -50,3 +50,4 @@ Route::get('medicine',[FrontendController::class,'medicine'])->name('medicine');
 Route::get('update',[FrontendController::class,'update'])->name('update');
 Route::get('practitioner',[FrontendController::class,'practitioner'])->name('practitioner');
 Route::get('contact',[FrontendController::class,'contact'])->name('contact');
+Route::get('apply-for',[FrontendController::class,'applyFor'])->name('apply.for');
