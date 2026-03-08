@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
@@ -35,7 +36,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('upload-image', [StudentController::class, 'uploadImage'])->name('upload.image');
     Route::resource('books', BookController::class);
     Route::get('book-status', [BookController::class, 'bookStatus'])->name('book.status');
+    Route::post('banner-status', [BannerController::class, 'bannerStatus'])->name('banner.status');
     Route::resource('news', NewsController::class);
+    Route::resource('banners', BannerController::class);
     Route::view('recursive', 'recursive');
 });
 Route::view('frontends.home', 'frontends.home');
@@ -43,11 +46,11 @@ Route::view('adminDashboard', 'adminDashboard');
 Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot.password');
 
 // FRONTEND
-Route::get('register',[RegisterController::class,'register'])->name('student.register');
-Route::get('books-list',[FrontendController::class,'books'])->name('books.list');
-Route::get('about-us',[FrontendController::class,'aboutUs'])->name('about.us');
-Route::get('medicine',[FrontendController::class,'medicine'])->name('medicine');
-Route::get('update',[FrontendController::class,'update'])->name('update');
-Route::get('practitioner',[FrontendController::class,'practitioner'])->name('practitioner');
-Route::get('contact',[FrontendController::class,'contact'])->name('contact');
-Route::get('apply-for',[FrontendController::class,'applyFor'])->name('apply.for');
+Route::get('register', [RegisterController::class, 'register'])->name('student.register');
+Route::get('books-list', [FrontendController::class, 'books'])->name('books.list');
+Route::get('about-us', [FrontendController::class, 'aboutUs'])->name('about.us');
+Route::get('medicine', [FrontendController::class, 'medicine'])->name('medicine');
+Route::get('update', [FrontendController::class, 'update'])->name('update');
+Route::get('practitioner', [FrontendController::class, 'practitioner'])->name('practitioner');
+Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
+Route::get('apply-for', [FrontendController::class, 'applyFor'])->name('apply.for');

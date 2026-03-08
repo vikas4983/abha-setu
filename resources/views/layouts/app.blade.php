@@ -279,15 +279,9 @@
                         </li>
 
                         <li>
-                            <a href="currencies.html">
+                            <a href="{{ route('banners.index') }}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
-                                Currencies
-                            </a>
-                        </li>
-                        <li>
-                            <a href="languages.html">
-                                <i class="ri-circle-fill circle-icon w-auto"></i>
-                                Languages
+                                Banners
                             </a>
                         </li>
                     </ul>
