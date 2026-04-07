@@ -244,7 +244,7 @@
                     <ul class="sidebar-submenu">
 
                         <li>
-                            <a href="#">
+                            <a href="{{route('siteSettings.index')}}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 General
                             </a>
