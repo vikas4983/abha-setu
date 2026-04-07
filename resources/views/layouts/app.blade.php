@@ -249,7 +249,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{route('banners.index')}}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Banners
                             </a>
