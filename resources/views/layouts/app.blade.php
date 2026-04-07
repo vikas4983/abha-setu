@@ -228,7 +228,6 @@
                         <i class="ri-macbook-line"></i>
                         <span>Permissions</span>
                     </a>
-
                 </li>
                 <li>
                     <a href="#">
