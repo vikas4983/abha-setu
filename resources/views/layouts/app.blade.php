@@ -277,7 +277,6 @@
                             aria-label="Sidebar Mobile Toggler Button">
                             <iconify-icon icon="heroicons:bars-3-solid" class="icon"></iconify-icon>
                         </button>
-
                     </div>
                 </div>
                 <div class="col-auto">
