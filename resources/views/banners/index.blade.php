@@ -149,7 +149,7 @@
                 if (roleStatusInput) roleStatusInput.value = String(status);
 
                 if (form) {
-                    form.action = "{{ route('roles.update', ':id') }}".replace(':id', id);
+                    form.action = "{{ route('banners.update', ':id') }}".replace(':id', id);
                 }
 
             });
@@ -170,7 +170,7 @@
                     const form = document.getElementById('deleteRoleForm');
 
                     if (form) {
-                        form.action = "{{ route('roles.destroy', ':id') }}".replace(':id', roleId);
+                        form.action = "{{ route('banners.destroy', ':id') }}".replace(':id', roleId);
                     }
 
                 });
