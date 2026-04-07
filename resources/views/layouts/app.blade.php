@@ -243,13 +243,13 @@
                     <ul class="sidebar-submenu">
 
                         <li>
-                            <a href="{{route('siteSettings.index')}}">
+                            <a href="{{ route('siteSettings.index') }}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 General
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('banners.index')}}">
+                            <a href="{{ route('banners.index') }}">
                                 <i class="ri-circle-fill circle-icon w-auto"></i>
                                 Banners
                             </a>
