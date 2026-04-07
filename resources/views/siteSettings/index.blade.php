@@ -1,6 +1,17 @@
 @extends('layouts.app')
 @section('title', 'Setting - General')
 @section('content')
+    <style>
+        .favicon-logo {
+            width: 10%;
+            transition: transform 0.5s ease;
+
+        }
+
+        .favicon-logo:hover {
+            transform: scale(5.2);
+        }
+    </style>
     <div class="dashboard-main-body">
         <div class="breadcrumb d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
             <div class="">
@@ -214,17 +225,22 @@
                         </div>
 
                         <div class="row gy-4">
+
                             <div class="col-md-6">
+
                                 <label for="imageUpload"
                                     class="form-label fw-semibold text-secondary-light text-md mb-8">Favicon <span
-                                        class="text-secondary-light fw-normal">(140px X 140px)</span></label>
+                                        class="text-secondary-light fw-normal">(140px X 140px)</span></label><img
+                                    src="{{ asset('storage/' . $setting->favicon) }}" alt=""
+                                    class="favicon-logo">
                                 <input type="file" name="favicon" class="form-control radius-8" id="imageUpload">
 
                             </div>
                             <div class="col-md-6">
                                 <label for="imageUploadTwo"
                                     class="form-label fw-semibold text-secondary-light text-md mb-8">Logo <span
-                                        class="text-secondary-light fw-normal">(140px X 140px)</span></label>
+                                        class="text-secondary-light fw-normal">(140px X 140px)</span></label> <img
+                                    src="{{ asset('storage/' . $setting->logo) }}" alt="" class="favicon-logo">
                                 <input type="file" name="logo" class="form-control radius-8" id="imageUploadTwo">
                             </div>
                         </div>
